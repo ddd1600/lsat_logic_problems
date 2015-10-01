@@ -47,7 +47,7 @@ class LogicProblem1
       puts "passed test one"
       true
     else # if the W DOES NOT has more buildings than Y, return false with regards to logical possibility
-      puts "failed test one"
+      puts "failed test one"# this is before I realized that in all cases w/ regard to buildings, t=2, w=2 and y=1
       false
     end
   end
