@@ -3,6 +3,16 @@ require 'awesome_print'
 
 class LogicProblem1
   attr_reader :the_set
+#the question
+#During the seventeenth century, three families--the Trents, the Williamses, and the Yandells--owned
+#five buildings that consituted the center of their village--the forge, the granary, the inn, the mill, and the
+#stable. Each family owned at least one of the buildings and each building was owned by exactly one of the families.
+#The historical evidence established the following about the ownership of the villages:
+#  - The Williamses owned more buildings than the Yandells owned
+#  - Neither the inn nore the mill belonged to the owner of the forge.
+#  - Either the Trents owned the stable or the Yandells owned the inn, or both.
+#
+#  See images for the questions
 
   def initialize
     @families = {:t => "Trents", :w => "Williamses", :y => "Yandells"}
