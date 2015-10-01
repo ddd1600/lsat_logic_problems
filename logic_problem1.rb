@@ -89,3 +89,9 @@ class LogicProblem1
   end
   
 end
+
+loop do
+  puts "restarting loop. press ctrl-c to break out"
+  LogicProblem1.new.go
+end
+
