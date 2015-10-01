@@ -10,6 +10,7 @@ class LogicProblem1
   end
   
   def go
+    #gathering information from the user. don't worry too much about this logic, its very....unnecessary to focus on at this point
     @the_set = {}
     [:t, :w, :y].each do |family|
       resp = ask "in a comma separated list, write the first letter of each property owned by the #{@families[family]}"
@@ -20,10 +21,16 @@ class LogicProblem1
       @the_set[family] = hsh
       ap @the_set
     end
-    test_rule_one
-    test_rule_one_point_five
-    test_rule_two
-    test_rule_three
+    #ok now that we've collected the information from the user, run the tests that all will return 'true' or 'false'
+    results = []
+    results << test_rule_one
+    results << test_rule_one_point_five
+    results << test_rule_two
+    results << test_rule_three
+    if results.contain?(false)# "1 strike and you're out" logic
+      false
+    else
+      true
   end
   
   
@@ -31,7 +38,7 @@ class LogicProblem1
     if @the_set[:w].select{|k,v| v == true}.count > @the_set[:y].select{|k,v| v == true}.count
       puts "passed test one"
       true
-    else
+    else # if the W DOES NOT has more buildings than Y, return false with regards to logical possibility
       puts "failed test one"
       false
     end
@@ -41,7 +48,7 @@ class LogicProblem1
     if @the_set[:w].select{|k,v| v==true}.count > 1
       puts "passed test 1.5"
       true
-    else
+    else# If W DOES NOT have more than 1 building, return false
       puts "failed test 1.5"
       false
     end
@@ -49,16 +56,16 @@ class LogicProblem1
   
   def test_rule_two
     forge_owner = @the_set.select{|owner, hsh| hsh[:forge] == true}.flatten.last
-    if forge_owner[:inn] == false && forge_owner[:mill] == false
+    if forge_owner[:inn] == false && forge_owner[:mill] == false #if the forge owner DOES NOT own an Inn or a Mill, return true
       puts "passed test two"
       true
-    else
+    else# otherwise the implication is that the forge owner does have an inn or a mill and so returns false
       puts "failed rule two"
       false
     end
   end
   
-  def test_rule_three
+  def test_rule_three # one or the other will return true. no need to even cover the "OR BOTH" situation, as it turns out
     if @the_set[:t][:stable] == true
       puts "passed rule three"
       true
