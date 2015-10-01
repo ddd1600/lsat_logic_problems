@@ -1,6 +1,3 @@
-require 'highline/import'
-require 'awesome_print'
-
 class LogicProblem1
   attr_reader :the_set
 #the question
@@ -23,13 +20,14 @@ class LogicProblem1
     #gathering information from the user. don't worry too much about this logic, its very....unnecessary to focus on at this point
     @the_set = {}
     [:t, :w, :y].each do |family|
-      resp = ask "in a comma separated list, write the first letter of each property owned by the #{@families[family]}"
+      puts "in a comma separated list, write the first letter of each property owned by the #{@families[family]}"
+      STDOUT.flush
+      resp = gets.chomp
       hsh = {:mill => false, :forge => false, :granary => false, :inn => false, :stable => false}
       resp.downcase.gsub(" ", "").split(",").each do |bldg|
         hsh[@buildings[bldg.to_sym]] = true
       end
       @the_set[family] = hsh
-      ap @the_set
     end
     #ok now that we've collected the information from the user, run the tests that all will return 'true' or 'false'
     results = []
